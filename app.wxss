@@ -1,0 +1,83 @@
+/* app.wxss */
+page {
+  background-color: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.container {
+  padding: 20rpx;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4A90E2 0%, #67B8DE 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12rpx;
+  padding: 24rpx 40rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.btn-primary:active {
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #4A90E2;
+  border: 2rpx solid #4A90E2;
+  border-radius: 12rpx;
+  padding: 24rpx 40rpx;
+  font-size: 32rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.input-group {
+  margin-bottom: 30rpx;
+}
+
+.input-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.input-field {
+  width: 100%;
+  padding: 20rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  background: #fff;
+}
+
+.input-field:focus {
+  border-color: #4A90E2;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+}

@@ -1,0 +1,76 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="header-title">药品管家</text>
+    <text class="header-subtitle">您的个人药品管理助手</text>
+  </view>
+
+  <!-- 添加药品按钮 -->
+  <view class="add-section">
+    <button class="btn-add" bindtap="goToAdd">
+      <text class="add-icon">+</text>
+      <text>添加药品</text>
+    </button>
+  </view>
+
+  <!-- 今日服药记录 -->
+  <view class="card" wx:if="{{todayRecords.length > 0}}">
+    <view class="card-header">
+      <text class="card-title">今日服药</text>
+      <text class="card-count">{{todayRecords.length}} 次</text>
+    </view>
+    <view class="record-list">
+      <view class="record-item" wx:for="{{todayRecords}}" wx:key="index">
+        <text class="record-name">{{item.medicineName}}</text>
+        <text class="record-time">{{item.takeTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 即将过期药品 -->
+  <view class="card" wx:if="{{expiringMedicines.length > 0}}">
+    <view class="card-header warning">
+      <text class="card-title">⚠️ 即将过期</text>
+    </view>
+    <view class="medicine-list">
+      <view class="medicine-item" wx:for="{{expiringMedicines}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <text class="medicine-name">{{item.name}}</text>
+        <text class="medicine-expiry">有效期: {{item.expiryDate}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的药品 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">我的药品</text>
+      <text class="card-link" bindtap="goToRecords">查看全部</text>
+    </view>
+    <view wx:if="{{medicines.length === 0}}" class="empty-state">
+      <text>暂无药品记录</text>
+      <button class="btn-small" bindtap="goToAdd">添加第一个药品</button>
+    </view>
+    <view class="medicine-list" wx:else>
+      <view class="medicine-item" wx:for="{{medicines}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="medicine-info">
+          <text class="medicine-name">{{item.name}}</text>
+          <text class="medicine-expiry" wx:if="{{item.expiryDate}}">有效期: {{item.expiryDate}}</text>
+        </view>
+        <text class="medicine-arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToAdd">
+      <text class="action-icon">📷</text>
+      <text class="action-text">拍照识别</text>
+    </view>
+    <view class="action-item" bindtap="goToRecords">
+      <text class="action-icon">📋</text>
+      <text class="action-text">服药记录</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+<!--pages/records/records.wxml-->
+<view class="container">
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{currentTab === 'medicines' ? 'active' : ''}}" bindtap="switchTab" data-tab="medicines">
+      <text>药品</text>
+    </view>
+    <view class="tab-item {{currentTab === 'records' ? 'active' : ''}}" bindtap="switchTab" data-tab="records">
+      <text>服药记录</text>
+    </view>
+    <view class="tab-item {{currentTab === 'cases' ? 'active' : ''}}" bindtap="switchTab" data-tab="cases">
+      <text>病例</text>
+    </view>
+  </view>
+
+  <!-- 药品列表 -->
+  <view wx:if="{{currentTab === 'medicines'}}" class="tab-content">
+    <view wx:if="{{medicines.length === 0}}" class="empty-state">
+      <text>暂无药品记录</text>
+    </view>
+    <view class="list">
+      <view class="list-item" wx:for="{{medicines}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="item-info">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-time" wx:if="{{item.expiryDate}}">有效期: {{item.expiryDate}}</text>
+          <text class="item-time">添加于: {{item.createTime}}</text>
+        </view>
+        <view class="item-actions">
+          <button class="btn-action" size="mini" catchtap="recordTake" data-id="{{item.id}}">服药</button>
+          <button class="btn-delete" size="mini" catchtap="deleteMedicine" data-id="{{item.id}}">删除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服药记录 -->
+  <view wx:if="{{currentTab === 'records'}}" class="tab-content">
+    <view wx:if="{{records.length === 0}}" class="empty-state">
+      <text>暂无服药记录</text>
+    </view>
+    <view class="list">
+      <view class="list-item" wx:for="{{records}}" wx:key="id">
+        <view class="item-info">
+          <text class="item-name">{{item.medicineName}}</text>
+          <text class="item-time">{{item.takeTime}}</text>
+        </view>
+        <button class="btn-delete" size="mini" catchtap="deleteRecord" data-id="{{item.id}}">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 病例记录 -->
+  <view wx:if="{{currentTab === 'cases'}}" class="tab-content">
+    <view class="add-case-btn">
+      <button class="btn-primary" bindtap="addCase">+ 添加病例</button>
+    </view>
+    <view wx:if="{{cases.length === 0}}" class="empty-state">
+      <text>暂无病例记录</text>
+    </view>
+    <view class="list">
+      <view class="list-item case-item" wx:for="{{cases}}" wx:key="id">
+        <view class="item-info">
+          <text class="item-content">{{item.content}}</text>
+          <text class="item-time">{{item.createTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

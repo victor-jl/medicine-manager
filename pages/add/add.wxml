@@ -1,0 +1,71 @@
+<!--pages/add/add.wxml-->
+<view class="container">
+  <!-- API配置提示 -->
+  <view class="api-tip" bindtap="toggleApiConfig">
+    <text>💡 点击配置百度OCR API（免费每天500次）</text>
+  </view>
+
+  <!-- API配置面板 -->
+  <view wx:if="{{showApiConfig}}" class="api-config">
+    <view class="config-title">百度API配置</view>
+    <view class="input-group">
+      <text class="input-label">API Key</text>
+      <input class="input-field" placeholder="请输入百度API Key" value="{{baiduApiKey}}" bindinput="onApiKeyInput" />
+    </view>
+    <view class="input-group">
+      <text class="input-label">Secret Key</text>
+      <input class="input-field" placeholder="请输入百度Secret Key" value="{{baiduSecretKey}}" bindinput="onSecretKeyInput" />
+    </view>
+    <button class="btn-save" bindtap="saveApiConfig">保存配置</button>
+    <view class="config-hint">
+      <text>获取方式：</text>
+      <text>1. 访问 https://console.bai du.com/</text>
+      <text>2. 创建应用获取API Key和Secret Key</text>
+      <text>3. 免费额度：每天500次调用</text>
+    </view>
+  </view>
+
+  <!-- 拍照区域 -->
+  <view class="photo-section" bindtap="takePhoto">
+    <view wx:if="{{photos.length === 0}}" class="photo-placeholder">
+      <text class="photo-icon">📷</text>
+      <text class="photo-text">点击拍照识别药品</text>
+      <text class="photo-hint">或</text>
+      <text class="photo-link" catchtap="chooseFromAlbum">从相册选择</text>
+    </view>
+    <image wx:else src="{{photos[0]}}" mode="aspectFill" class="photo-preview"></image>
+  </view>
+
+  <view wx:if="{{isIdentifying}}" class="identifying">
+    <text>正在识别药品，请稍候...</text>
+  </view>
+
+  <!-- 表单 -->
+  <view class="form-section">
+    <view class="input-group">
+      <text class="input-label">药品名称 *</text>
+      <input class="input-field" placeholder="请输入或拍照识别药品名称" value="{{name}}" bindinput="onNameInput" />
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">有效期</text>
+      <picker mode="date" value="{{expiryDate}}" bindchange="onExpiryDateChange">
+        <view class="picker-field">
+          <text wx:if="{{expiryDate}}">{{expiryDate}}</text>
+          <text wx:else class="placeholder">请选择有效期</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">备注说明</text>
+      <textarea class="textarea-field" placeholder="请输入备注说明" value="{{description}}" bindinput="onDescriptionInput" />
+    </view>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="btn-section">
+    <button class="btn-primary" bindtap="saveMedicine">保存药品</button>
+    <button class="btn-secondary" bindtap="recordTake" wx:if="{{name}}">记录今天已服药</button>
+  </view>
+</view>

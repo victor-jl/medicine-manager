@@ -1,0 +1,46 @@
+<!--pages/detail/detail.wxml-->
+<view class="container">
+  <view wx:if="{{medicine}}" class="detail-card">
+    <!-- 药品图片 -->
+    <view wx:if="{{medicine.photos && medicine.photos.length > 0}}" class="medicine-image">
+      <image src="{{medicine.photos[0]}}" mode="aspectFill"></image>
+    </view>
+
+    <!-- 药品信息 -->
+    <view class="medicine-info">
+      <text class="medicine-name">{{medicine.name}}</text>
+      <view class="info-row">
+        <text class="info-label">有效期：</text>
+        <text class="info-value">{{medicine.expiryDate || '未设置'}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">添加时间：</text>
+        <text class="info-value">{{medicine.createTime}}</text>
+      </view>
+      <view wx:if="{{medicine.description}}" class="info-row">
+        <text class="info-label">备注说明：</text>
+        <text class="info-value">{{medicine.description}}</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="btn-primary" bindtap="recordTake">记录今天已服药</button>
+      <button class="btn-danger" bindtap="deleteMedicine">删除药品</button>
+    </view>
+  </view>
+
+  <!-- 服药记录 -->
+  <view class="records-section">
+    <text class="section-title">服药记录</text>
+    <view wx:if="{{records.length === 0}}" class="empty-state">
+      <text>暂无服药记录</text>
+    </view>
+    <view class="record-list">
+      <view class="record-item" wx:for="{{records}}" wx:key="id">
+        <text class="record-icon">💊</text>
+        <text class="record-time">{{item.takeTime}}</text>
+      </view>
+    </view>
+  </view>
+</view>

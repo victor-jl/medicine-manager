@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>用药记录 - 企业微信版</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+    }
+    .header {
+      background: linear-gradient(135deg, #4A90E2, #67B8DE);
+      color: white;
+      padding: 30px 20px;
+      border-radius: 0 0 20px 20px;
+    }
+    .header h1 { font-size: 24px; margin-bottom: 5px; }
+    .header p { font-size: 14px; opacity: 0.8; }
+    .container { padding: 20px; }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .card-title { font-size: 16px; font-weight: 600; color: #333; }
+    .card-link { font-size: 13px; color: #4A90E2; }
+    .btn-add {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #4A90E2, #67B8DE);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .btn-add:active { opacity: 0.8; }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-size: 14px; color: #333; margin-bottom: 8px; }
+    .input-group input, .input-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: #4A90E2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      color: #4A90E2;
+      border: 1px solid #4A90E2;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .medicine-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .medicine-info h3 { font-size: 15px; color: #333; margin-bottom: 4px; }
+    .medicine-info p { font-size: 12px; color: #999; }
+    .tab-bar {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      padding: 5px;
+      margin-bottom: 15px;
+    }
+    .tab-item {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      color: #666;
+      border-radius: 8px;
+    }
+    .tab-item.active {
+      background: #4A90E2;
+      color: white;
+    }
+    .record-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .empty { text-align: center; padding: 40px; color: #999; }
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+      display: none;
+    }
+    .message.error { background: #fee; color: #c33; display: block; }
+    .message.success { background: #efe; color: #3c3; display: block; }
+    .btn-action {
+      padding: 6px 12px;
+      background: #4A90E2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+    .btn-delete {
+      padding: 6px 12px;
+      background: white;
+      color: #e74c3c;
+      border: 1px solid #e74c3c;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>用药记录</h1>
+    <p>记录个人用药情况</p>
+  </div>
+
+  <div class="container">
+    <!-- Tab -->
+    <div class="tab-bar">
+      <div class="tab-item active" onclick="switchTab('medicines')">药品</div>
+      <div class="tab-item" onclick="switchTab('records')">服药记录</div>
+      <div class="tab-item" onclick="switchTab('cases')">病例</div>
+    </div>
+
+    <!-- 添加按钮 -->
+    <button class="btn-add" onclick="showAddForm()">+ 添加药品</button>
+
+    <!-- 添加表单 -->
+    <div id="addForm" class="card" style="display:none;">
+      <div id="msg" class="message"></div>
+      <div class="input-group">
+        <label>药品名称 *</label>
+        <input type="text" id="medName" placeholder="请输入药品名称">
+      </div>
+      <div class="input-group">
+        <label>有效期</label>
+        <input type="date" id="medExpiry">
+      </div>
+      <div class="input-group">
+        <label>备注说明</label>
+        <textarea id="medDesc" rows="3" placeholder="请输入备注"></textarea>
+      </div>
+      <button class="btn-submit" onclick="saveMedicine()">保存药品</button>
+      <button class="btn-secondary" onclick="recordTake()" id="btnRecord">记录今天已服药</button>
+    </div>
+
+    <!-- 药品列表 -->
+    <div id="medicinesTab">
+      <div id="medicinesList"></div>
+    </div>
+
+    <!-- 服药记录 -->
+    <div id="recordsTab" style="display:none;">
+      <div id="recordsList"></div>
+    </div>
+
+    <!-- 病例 -->
+    <div id="casesTab" style="display:none;">
+      <button class="btn-add" style="margin-bottom:15px;" onclick="showAddCase()">+ 添加病例</button>
+      <div id="casesList"></div>
+    </div>
+  </div>
+
+  <script>
+    // 本地存储
+    const STORAGE_KEYS = {
+      medicines: 'medicines',
+      records: 'records',
+      cases: 'cases'
+    };
+
+    function getData(key) {
+      return JSON.parse(localStorage.getItem(key) || '[]');
+    }
+
+    function setData(key, data) {
+      localStorage.setItem(key, JSON.stringify(data));
+    }
+
+    // 加载数据
+    function loadData() {
+      loadMedicines();
+      loadRecords();
+      loadCases();
+    }
+
+    function loadMedicines() {
+      const medicines = getData(STORAGE_KEYS.medicines);
+      const list = document.getElementById('medicinesList');
+      if (medicines.length === 0) {
+        list.innerHTML = '<div class="empty">暂无药品记录</div>';
+        return;
+      }
+      list.innerHTML = medicines.map(m => `
+        <div class="card">
+          <div class="medicine-item">
+            <div class="medicine-info">
+              <h3>${m.name}</h3>
+              <p>有效期: ${m.expiryDate || '未设置'}</p>
+              <p>添加于: ${m.createTime}</p>
+            </div>
+            <div>
+              <button class="btn-action" onclick="quickRecord('${m.name}', ${m.id})">服药</button>
+              <button class="btn-delete" onclick="deleteMedicine(${m.id})">删除</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function loadRecords() {
+      const records = getData(STORAGE_KEYS.records);
+      const list = document.getElementById('recordsList');
+      if (records.length === 0) {
+        list.innerHTML = '<div class="empty">暂无服药记录</div>';
+        return;
+      }
+      list.innerHTML = records.map(r => `
+        <div class="card">
+          <div class="record-item">
+            <span>💊 ${r.medicineName}</span>
+            <span style="color:#999;font-size:12px;">${r.takeTime}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function loadCases() {
+      const cases = getData(STORAGE_KEYS.cases);
+      const list = document.getElementById('casesList');
+      if (cases.length === 0) {
+        list.innerHTML = '<div class="empty">暂无病例记录</div>';
+        return;
+      }
+      list.innerHTML = cases.map(c => `
+        <div class="card">
+          <p>${c.content}</p>
+          <p style="color:#999;font-size:12px;margin-top:8px;">${c.createTime}</p>
+        </div>
+      `).join('');
+    }
+
+    // Tab切换
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('medicinesTab').style.display = tab === 'medicines' ? 'block' : 'none';
+      document.getElementById('recordsTab').style.display = tab === 'records' ? 'block' : 'none';
+      document.getElementById('casesTab').style.display = tab === 'cases' ? 'block' : 'none';
+      document.getElementById('addForm').style.display = 'none';
+    }
+
+    // 显示添加表单
+    function showAddForm() {
+      document.getElementById('addForm').style.display = 'block';
+      document.getElementById('msg').style.display = 'none';
+      document.getElementById('medName').value = '';
+      document.getElementById('medExpiry').value = '';
+      document.getElementById('medDesc').value = '';
+    }
+
+    // 保存药品
+    function saveMedicine() {
+      const name = document.getElementById('medName').value.trim();
+      if (!name) {
+        showMsg('请输入药品名称', 'error');
+        return;
+      }
+
+      const medicines = getData(STORAGE_KEYS.medicines);
+      const newMed = {
+        id: Date.now(),
+        name: name,
+        expiryDate: document.getElementById('medExpiry').value,
+        description: document.getElementById('medDesc').value,
+        createTime: new Date().toLocaleString()
+      };
+
+      medicines.push(newMed);
+      setData(STORAGE_KEYS.medicines, medicines);
+
+      showMsg('保存成功', 'success');
+      document.getElementById('btnRecord').style.display = 'block';
+      loadMedicines();
+    }
+
+    // 快速记录服药
+    function quickRecord(name, id) {
+      const records = getData(STORAGE_KEYS.records);
+      records.push({
+        id: Date.now(),
+        medicineId: id,
+        medicineName: name,
+        takeTime: new Date().toLocaleString()
+      });
+      setData(STORAGE_KEYS.records, records);
+      showMsg('记录成功', 'success');
+      loadRecords();
+    }
+
+    // 记录服药
+    function recordTake() {
+      const name = document.getElementById('medName').value.trim();
+      if (!name) {
+        showMsg('请先保存药品', 'error');
+        return;
+      }
+
+      const records = getData(STORAGE_KEYS.records);
+      records.push({
+        id: Date.now(),
+        medicineId: Date.now(),
+        medicineName: name,
+        takeTime: new Date().toLocaleString()
+      });
+      setData(STORAGE_KEYS.records, records);
+      showMsg('记录成功', 'success');
+      loadRecords();
+    }
+
+    // 删除药品
+    function deleteMedicine(id) {
+      if (!confirm('确定要删除这个药品吗？')) return;
+      let medicines = getData(STORAGE_KEYS.medicines);
+      medicines = medicines.filter(m => m.id !== id);
+      setData(STORAGE_KEYS.medicines, medicines);
+      loadMedicines();
+    }
+
+    // 添加病例
+    function showAddCase() {
+      const content = prompt('请输入病例描述:');
+      if (!content) return;
+
+      const cases = getData(STORAGE_KEYS.cases);
+      cases.push({
+        id: Date.now(),
+        content: content,
+        createTime: new Date().toLocaleString()
+      });
+      setData(STORAGE_KEYS.cases, cases);
+      loadCases();
+    }
+
+    // 显示消息
+    function showMsg(text, type) {
+      const msg = document.getElementById('msg');
+      msg.textContent = text;
+      msg.className = 'message ' + type;
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 2000);
+    }
+
+    // 初始化
+    loadData();
+  </script>
+</body>
+</html>
