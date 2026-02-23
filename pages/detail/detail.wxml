@@ -9,9 +9,35 @@
     <!-- 药品信息 -->
     <view class="medicine-info">
       <text class="medicine-name">{{medicine.name}}</text>
+
+      <!-- 新增字段显示 -->
+      <view wx:if="{{medicine.specification}}" class="info-row">
+        <text class="info-label">规格：</text>
+        <text class="info-value">{{medicine.specification}}</text>
+      </view>
+      <view wx:if="{{medicine.manufacturer}}" class="info-row">
+        <text class="info-label">生产厂家：</text>
+        <text class="info-value">{{medicine.manufacturer}}</text>
+      </view>
       <view class="info-row">
         <text class="info-label">有效期：</text>
         <text class="info-value">{{medicine.expiryDate || '未设置'}}</text>
+      </view>
+      <view wx:if="{{medicine.usage}}" class="info-row">
+        <text class="info-label">用法用量：</text>
+        <text class="info-value">{{medicine.usage}}</text>
+      </view>
+      <view wx:if="{{medicine.approvalNumber}}" class="info-row">
+        <text class="info-label">国药准字：</text>
+        <text class="info-value">{{medicine.approvalNumber}}</text>
+      </view>
+      <view wx:if="{{medicine.storage}}" class="info-row">
+        <text class="info-label">贮藏条件：</text>
+        <text class="info-value">{{medicine.storage}}</text>
+      </view>
+      <view wx:if="{{medicine.ingredients}}" class="info-row">
+        <text class="info-label">主要成分：</text>
+        <text class="info-value">{{medicine.ingredients}}</text>
       </view>
       <view class="info-row">
         <text class="info-label">添加时间：</text>

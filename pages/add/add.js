@@ -1,11 +1,20 @@
 // pages/add/add.js
 const { recognizeWithBaidu, extractMedicineName } = require('../../utils/ocr');
+const { analyzeMedicineInfo, formatExpiryDate } = require('../../utils/ai');
 
 Page({
   data: {
     name: '',
     expiryDate: '',
     description: '',
+    // 新增字段
+    specification: '',      // 规格
+    manufacturer: '',       // 生产厂家
+    usage: '',             // 用法用量
+    approvalNumber: '',    // 国药准字
+    storage: '',           // 贮藏条件
+    ingredients: '',       // 成分
+
     photos: [],
     isIdentifying: false,
     // 百度API配置
@@ -88,11 +97,32 @@ Page({
       // 调用百度OCR
       const result = await this.callBaiduOCR(imagePath, apiKey, secretKey);
 
-      // 提取药品名称
-      const medicineName = extractMedicineName(result.text);
+      // 使用AI分析提取所有字段
+      const medicineInfo = analyzeMedicineInfo(result.text);
+
+      // 格式化有效期
+      const formattedExpiry = formatExpiryDate(medicineInfo.expiryDate);
+
+      // 构建描述信息
+      let descParts = [];
+      if (medicineInfo.specification) descParts.push(`规格: ${medicineInfo.specification}`);
+      if (medicineInfo.manufacturer) descParts.push(`厂家: ${medicineInfo.manufacturer}`);
+      if (medicineInfo.usage) descParts.push(`用法: ${medicineInfo.usage}`);
+      if (medicineInfo.approvalNumber) descParts.push(`准字: ${medicineInfo.approvalNumber}`);
+      if (medicineInfo.storage) descParts.push(`贮藏: ${medicineInfo.storage}`);
+      if (medicineInfo.ingredients) descParts.push(`成分: ${medicineInfo.ingredients}`);
+      const description = descParts.join('\n');
 
       this.setData({
-        name: medicineName,
+        name: medicineInfo.name,
+        expiryDate: formattedExpiry,
+        specification: medicineInfo.specification || '',
+        manufacturer: medicineInfo.manufacturer || '',
+        usage: medicineInfo.usage || '',
+        approvalNumber: medicineInfo.approvalNumber || '',
+        storage: medicineInfo.storage || '',
+        ingredients: medicineInfo.ingredients || '',
+        description: description,
         isIdentifying: false
       });
 
@@ -182,6 +212,31 @@ Page({
     this.setData({ description: e.detail.value });
   },
 
+  // 新增字段输入处理
+  onSpecificationInput(e) {
+    this.setData({ specification: e.detail.value });
+  },
+
+  onManufacturerInput(e) {
+    this.setData({ manufacturer: e.detail.value });
+  },
+
+  onUsageInput(e) {
+    this.setData({ usage: e.detail.value });
+  },
+
+  onApprovalNumberInput(e) {
+    this.setData({ approvalNumber: e.detail.value });
+  },
+
+  onStorageInput(e) {
+    this.setData({ storage: e.detail.value });
+  },
+
+  onIngredientsInput(e) {
+    this.setData({ ingredients: e.detail.value });
+  },
+
   // 保存药品
   saveMedicine() {
     if (!this.data.name) {
@@ -195,6 +250,13 @@ Page({
       name: this.data.name,
       expiryDate: this.data.expiryDate,
       description: this.data.description,
+      // 新增字段
+      specification: this.data.specification,
+      manufacturer: this.data.manufacturer,
+      usage: this.data.usage,
+      approvalNumber: this.data.approvalNumber,
+      storage: this.data.storage,
+      ingredients: this.data.ingredients,
       photos: this.data.photos,
       createTime: new Date().toLocaleString()
     };

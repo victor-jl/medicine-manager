@@ -55,6 +55,7 @@
       <view class="medicine-item" wx:for="{{medicines}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
         <view class="medicine-info">
           <text class="medicine-name">{{item.name}}</text>
+          <text class="medicine-spec" wx:if="{{item.specification}}">{{item.specification}}</text>
           <text class="medicine-expiry" wx:if="{{item.expiryDate}}">有效期: {{item.expiryDate}}</text>
         </view>
         <text class="medicine-arrow">></text>

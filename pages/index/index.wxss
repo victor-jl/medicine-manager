@@ -125,6 +125,11 @@
   color: #999;
 }
 
+.medicine-spec {
+  font-size: 24rpx;
+  color: #4A90E2;
+}
+
 .medicine-arrow {
   font-size: 28rpx;
   color: #ccc;

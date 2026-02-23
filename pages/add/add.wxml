@@ -2,7 +2,7 @@
 <view class="container">
   <!-- API配置提示 -->
   <view class="api-tip" bindtap="toggleApiConfig">
-    <text>💡 点击配置百度OCR API（免费每天500次）</text>
+    <text>点击配置百度OCR API（免费每天500次）</text>
   </view>
 
   <!-- API配置面板 -->
@@ -36,8 +36,14 @@
     <image wx:else src="{{photos[0]}}" mode="aspectFill" class="photo-preview"></image>
   </view>
 
+  <!-- AI识别状态 -->
   <view wx:if="{{isIdentifying}}" class="identifying">
-    <text>正在识别药品，请稍候...</text>
+    <text>正在AI分析识别药品信息...</text>
+  </view>
+
+  <!-- AI识别成功的字段提示 -->
+  <view wx:if="{{name && isIdentifying === false}}" class="ai-result-tip">
+    <text>已识别到以下信息：</text>
   </view>
 
   <!-- 表单 -->
@@ -45,6 +51,18 @@
     <view class="input-group">
       <text class="input-label">药品名称 *</text>
       <input class="input-field" placeholder="请输入或拍照识别药品名称" value="{{name}}" bindinput="onNameInput" />
+    </view>
+
+    <!-- 新增字段：规格 -->
+    <view class="input-group">
+      <text class="input-label">规格</text>
+      <input class="input-field" placeholder="如：0.5g*10粒" value="{{specification}}" bindinput="onSpecificationInput" />
+    </view>
+
+    <!-- 新增字段：生产厂家 -->
+    <view class="input-group">
+      <text class="input-label">生产厂家</text>
+      <input class="input-field" placeholder="请输入或识别生产厂家" value="{{manufacturer}}" bindinput="onManufacturerInput" />
     </view>
 
     <view class="input-group">
@@ -55,6 +73,30 @@
           <text wx:else class="placeholder">请选择有效期</text>
         </view>
       </picker>
+    </view>
+
+    <!-- 新增字段：用法用量 -->
+    <view class="input-group">
+      <text class="input-label">用法用量</text>
+      <input class="input-field" placeholder="如：口服，一次1片，一日3次" value="{{usage}}" bindinput="onUsageInput" />
+    </view>
+
+    <!-- 新增字段：国药准字 -->
+    <view class="input-group">
+      <text class="input-label">国药准字</text>
+      <input class="input-field" placeholder="如：国药准字H12345678" value="{{approvalNumber}}" bindinput="onApprovalNumberInput" />
+    </view>
+
+    <!-- 新增字段：贮藏条件 -->
+    <view class="input-group">
+      <text class="input-label">贮藏条件</text>
+      <input class="input-field" placeholder="如：遮光，密闭，置阴凉处" value="{{storage}}" bindinput="onStorageInput" />
+    </view>
+
+    <!-- 新增字段：成分 -->
+    <view class="input-group">
+      <text class="input-label">主要成分</text>
+      <input class="input-field" placeholder="请输入主要成分" value="{{ingredients}}" bindinput="onIngredientsInput" />
     </view>
 
     <view class="input-group">

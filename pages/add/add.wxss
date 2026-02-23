@@ -101,6 +101,16 @@
   color: #856404;
 }
 
+.ai-result-tip {
+  padding: 16rpx 24rpx;
+  text-align: left;
+  background: #d4edda;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  color: #155724;
+  font-size: 26rpx;
+}
+
 .form-section {
   background: #fff;
   border-radius: 16rpx;
