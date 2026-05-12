@@ -1,0 +1,22 @@
+{
+  "name": "medicine-tracker",
+  "version": "1.0.0",
+  "description": "用药记录小程序测试套件",
+  "scripts": {
+    "test": "jest --testMatch='**/tests/**/*.test.js'",
+    "test:watch": "jest --watch --testMatch='**/tests/**/*.test.js'",
+    "test:coverage": "jest --coverage --testMatch='**/tests/**/*.test.js'"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": ["./tests/setup.js"],
+    "testMatch": ["**/tests/**/*.test.js"],
+    "moduleFileExtensions": ["js", "json"],
+    "verbose": true,
+    "testTimeout": 10000,
+    "clearMocks": true
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
