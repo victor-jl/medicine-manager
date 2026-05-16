@@ -1,0 +1,37 @@
+{
+  "analysisDays": 7,
+  "outputDir": "./test-report",
+  "includePatterns": [
+    "**/*.js"
+  ],
+  "excludePatterns": [
+    "**/node_modules/**",
+    "**/h5/**",
+    "**/*.wxml",
+    "**/*.wxss",
+    "**/*.json",
+    "**/dist/**",
+    "**/build/**"
+  ],
+  "riskThresholds": {
+    "critical": 80,
+    "high": 60,
+    "medium": 40,
+    "low": 20
+  },
+  "testGeneration": {
+    "enabled": true,
+    "minPriority": "medium",
+    "maxTestsPerFile": 10
+  },
+  "reportFormats": [
+    "markdown",
+    "json",
+    "html"
+  ],
+  "validation": {
+    "checkDeterminism": true,
+    "checkDependencies": true,
+    "minCoverageTarget": 0.8
+  }
+}

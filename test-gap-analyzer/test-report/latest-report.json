@@ -1,0 +1,784 @@
+{
+  "metadata": {
+    "generatedAt": "2026-05-16T02:14:59.172Z",
+    "analyzerVersion": "1.0.0",
+    "config": {
+      "analysisDays": 7,
+      "outputDir": "./test-report",
+      "includePatterns": [
+        "**/*.js"
+      ],
+      "excludePatterns": [
+        "**/node_modules/**",
+        "**/h5/**",
+        "**/*.wxml",
+        "**/*.wxss"
+      ],
+      "riskThresholds": {
+        "critical": 80,
+        "high": 60,
+        "medium": 40,
+        "low": 20
+      }
+    }
+  },
+  "summary": {
+    "analyzedCommits": 0,
+    "coverageGaps": 8,
+    "riskAssessments": 8,
+    "generatedTests": 3
+  },
+  "commits": [],
+  "coverageGaps": [
+    {
+      "file": "/workspace/test-gap-analyzer/src/test-generator.js",
+      "relativePath": "src/test-generator.js",
+      "reason": "criticalComplexityNoTest",
+      "riskScore": 67.2,
+      "riskLevel": "critical",
+      "complexity": {
+        "score": 56,
+        "level": "critical",
+        "factors": [
+          {
+            "factor": "highAsyncUsage",
+            "weight": 2,
+            "count": 22
+          }
+        ],
+        "linesOfCode": 1232
+      },
+      "functions": [
+        "generateTestTemplates",
+        "generateOCRTests",
+        "generateExtractMedicineNameTest",
+        "generateOCRRecognitionTest",
+        "generateBaiduOCRTests",
+        "generateBaiduTokenTest",
+        "generateBaiduRecognizeTest",
+        "generateAddPageTests",
+        "generateSaveMedicineTest",
+        "generateRecordTakeTest",
+        "generateOCRIdentificationTest",
+        "generateIndexPageTests",
+        "generateIndexPageTest",
+        "generateRecordsPageTests",
+        "generateRecordsPageTest",
+        "generateDetailPageTests",
+        "generateDetailPageTest",
+        "generateGenericTests",
+        "generateGenericTest",
+        "extractFunctionsFromContent",
+        "generateTests"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    },
+    {
+      "file": "/workspace/test-gap-analyzer/src/risk-assessor.js",
+      "relativePath": "src/risk-assessor.js",
+      "reason": "criticalComplexityNoTest",
+      "riskScore": 31.1,
+      "riskLevel": "critical",
+      "complexity": {
+        "score": 31.1,
+        "level": "critical",
+        "factors": [
+          {
+            "factor": "heavyValidation",
+            "weight": 1.3,
+            "count": 17
+          },
+          {
+            "factor": "dataParsing",
+            "weight": 1.4,
+            "count": 5
+          }
+        ],
+        "linesOfCode": 269
+      },
+      "functions": [
+        "calculateRiskScore",
+        "getRiskLevel",
+        "identifyRiskFactors",
+        "generateRecommendations",
+        "shouldGenerateTest",
+        "categorizeTestPriority",
+        "assessRiskPriority"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    },
+    {
+      "file": "/workspace/test-gap-analyzer/src/coverage-analyzer.js",
+      "relativePath": "src/coverage-analyzer.js",
+      "reason": "criticalComplexityNoTest",
+      "riskScore": 25.4,
+      "riskLevel": "critical",
+      "complexity": {
+        "score": 21.2,
+        "level": "critical",
+        "factors": [
+          {
+            "factor": "dataParsing",
+            "weight": 1.4,
+            "count": 13
+          }
+        ],
+        "linesOfCode": 303
+      },
+      "functions": [
+        "findTestFiles",
+        "parseExistingTests",
+        "extractFunctions",
+        "analyzeComplexity",
+        "detectCoverageGaps",
+        "calculateGapRiskScore",
+        "getRiskLevel",
+        "determineGapReason",
+        "identifyCriticalPaths",
+        "detectDownstreamUsage",
+        "analyzeCoverageGaps"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    },
+    {
+      "file": "/workspace/test-gap-analyzer/src/test-runner.js",
+      "relativePath": "src/test-runner.js",
+      "reason": "criticalComplexityNoTest",
+      "riskScore": 17.2,
+      "riskLevel": "critical",
+      "complexity": {
+        "score": 17.2,
+        "level": "critical",
+        "factors": [
+          {
+            "factor": "highAsyncUsage",
+            "weight": 2,
+            "count": 5
+          },
+          {
+            "factor": "heavyValidation",
+            "weight": 1.3,
+            "count": 4
+          }
+        ],
+        "linesOfCode": 299
+      },
+      "functions": [
+        "validateTestSyntax",
+        "checkDependencies",
+        "validateTestStructure",
+        "checkTestDeterminism",
+        "runTestFile",
+        "validateGeneratedTests",
+        "validateCoverage",
+        "runTests",
+        "generateTestManifest",
+        "testRunner"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    },
+    {
+      "file": "/workspace/test-gap-analyzer/src/reporter.js",
+      "relativePath": "src/reporter.js",
+      "reason": "highComplexityNoTest",
+      "riskScore": 11.8,
+      "riskLevel": "high",
+      "complexity": {
+        "score": 11.8,
+        "level": "high",
+        "factors": [
+          {
+            "factor": "heavyValidation",
+            "weight": 1.3,
+            "count": 6
+          }
+        ],
+        "linesOfCode": 494
+      },
+      "functions": [
+        "generateMarkdownReport",
+        "generateJSONReport",
+        "generateHTMLReport",
+        "generateReport"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    },
+    {
+      "file": "/workspace/test-gap-analyzer/bin/cli.js",
+      "relativePath": "bin/cli.js",
+      "reason": "highComplexityNoTest",
+      "riskScore": 10.2,
+      "riskLevel": "high",
+      "complexity": {
+        "score": 10.2,
+        "level": "high",
+        "factors": [
+          {
+            "factor": "complexErrorHandling",
+            "weight": 1.2,
+            "count": 3
+          },
+          {
+            "factor": "dataParsing",
+            "weight": 1.4,
+            "count": 4
+          }
+        ],
+        "linesOfCode": 150
+      },
+      "functions": [
+        "loadConfig"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    },
+    {
+      "file": "/workspace/test-gap-analyzer/src/change-detector.js",
+      "relativePath": "src/change-detector.js",
+      "reason": "noTestFound",
+      "riskScore": 6.2,
+      "riskLevel": "medium",
+      "complexity": {
+        "score": 6.199999999999999,
+        "level": "medium",
+        "factors": [
+          {
+            "factor": "dataParsing",
+            "weight": 1.4,
+            "count": 3
+          }
+        ],
+        "linesOfCode": 214
+      },
+      "functions": [
+        "getRecentCommits",
+        "generateMockCommits",
+        "analyzeChangePatterns",
+        "detectChangedFunctions",
+        "categorizeChanges",
+        "analyzeRecentChanges"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    },
+    {
+      "file": "/workspace/test-gap-analyzer/src/index.js",
+      "relativePath": "src/index.js",
+      "reason": "noTestFound",
+      "riskScore": 0,
+      "riskLevel": "low",
+      "complexity": {
+        "score": 0,
+        "level": "low",
+        "factors": [],
+        "linesOfCode": 77
+      },
+      "functions": [
+        "constructor",
+        "run"
+      ],
+      "isInChangeSet": false,
+      "priority": "medium"
+    }
+  ],
+  "riskAssessments": [
+    {
+      "file": "src/test-generator.js",
+      "riskScore": 67.2,
+      "riskLevel": "critical",
+      "riskFactors": [
+        {
+          "factor": "criticalComplexity",
+          "description": "代码复杂度极高，缺乏测试覆盖可能导致严重问题",
+          "impact": "可能导致关键功能在边界条件下失效"
+        },
+        {
+          "factor": "asyncComplexity",
+          "description": "大量异步操作",
+          "impact": "异步处理错误可能导致数据不一致或竞态条件"
+        },
+        {
+          "factor": "parse",
+          "description": "包含parse相关的复杂逻辑",
+          "impact": "parse相关逻辑需要充分测试"
+        },
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "auth",
+          "description": "包含auth相关的复杂逻辑",
+          "impact": "auth相关逻辑需要充分测试"
+        },
+        {
+          "factor": "validate",
+          "description": "包含validate相关的复杂逻辑",
+          "impact": "validate相关逻辑需要充分测试"
+        },
+        {
+          "factor": "error",
+          "description": "包含error相关的复杂逻辑",
+          "impact": "error相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "test",
+          "priority": "immediate",
+          "description": "必须立即生成测试用例"
+        },
+        {
+          "type": "coverage",
+          "priority": "immediate",
+          "description": "需要达到80%以上的代码覆盖率"
+        },
+        {
+          "type": "async",
+          "priority": "high",
+          "description": "测试异步操作的错误处理和超时情况"
+        },
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": true
+    },
+    {
+      "file": "src/risk-assessor.js",
+      "riskScore": 31.1,
+      "riskLevel": "critical",
+      "riskFactors": [
+        {
+          "factor": "criticalComplexity",
+          "description": "代码复杂度极高，缺乏测试覆盖可能导致严重问题",
+          "impact": "可能导致关键功能在边界条件下失效"
+        },
+        {
+          "factor": "validationComplexity",
+          "description": "复杂验证逻辑",
+          "impact": "验证规则变更可能影响数据完整性和安全性"
+        },
+        {
+          "factor": "parsingRisk",
+          "description": "数据解析逻辑",
+          "impact": "解析错误可能导致应用崩溃或显示错误数据"
+        },
+        {
+          "factor": "parse",
+          "description": "包含parse相关的复杂逻辑",
+          "impact": "parse相关逻辑需要充分测试"
+        },
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "auth",
+          "description": "包含auth相关的复杂逻辑",
+          "impact": "auth相关逻辑需要充分测试"
+        },
+        {
+          "factor": "validate",
+          "description": "包含validate相关的复杂逻辑",
+          "impact": "validate相关逻辑需要充分测试"
+        },
+        {
+          "factor": "error",
+          "description": "包含error相关的复杂逻辑",
+          "impact": "error相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "test",
+          "priority": "immediate",
+          "description": "必须立即生成测试用例"
+        },
+        {
+          "type": "coverage",
+          "priority": "immediate",
+          "description": "需要达到80%以上的代码覆盖率"
+        },
+        {
+          "type": "edgeCase",
+          "priority": "high",
+          "description": "测试各种输入格式和异常情况"
+        },
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": true
+    },
+    {
+      "file": "src/coverage-analyzer.js",
+      "riskScore": 25.4,
+      "riskLevel": "critical",
+      "riskFactors": [
+        {
+          "factor": "criticalComplexity",
+          "description": "代码复杂度极高，缺乏测试覆盖可能导致严重问题",
+          "impact": "可能导致关键功能在边界条件下失效"
+        },
+        {
+          "factor": "parsingRisk",
+          "description": "数据解析逻辑",
+          "impact": "解析错误可能导致应用崩溃或显示错误数据"
+        },
+        {
+          "factor": "parse",
+          "description": "包含parse相关的复杂逻辑",
+          "impact": "parse相关逻辑需要充分测试"
+        },
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "validate",
+          "description": "包含validate相关的复杂逻辑",
+          "impact": "validate相关逻辑需要充分测试"
+        },
+        {
+          "factor": "error",
+          "description": "包含error相关的复杂逻辑",
+          "impact": "error相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "test",
+          "priority": "immediate",
+          "description": "必须立即生成测试用例"
+        },
+        {
+          "type": "coverage",
+          "priority": "immediate",
+          "description": "需要达到80%以上的代码覆盖率"
+        },
+        {
+          "type": "edgeCase",
+          "priority": "high",
+          "description": "测试各种输入格式和异常情况"
+        },
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": true
+    },
+    {
+      "file": "src/test-runner.js",
+      "riskScore": 17.2,
+      "riskLevel": "high",
+      "riskFactors": [
+        {
+          "factor": "criticalComplexity",
+          "description": "代码复杂度极高，缺乏测试覆盖可能导致严重问题",
+          "impact": "可能导致关键功能在边界条件下失效"
+        },
+        {
+          "factor": "asyncComplexity",
+          "description": "大量异步操作",
+          "impact": "异步处理错误可能导致数据不一致或竞态条件"
+        },
+        {
+          "factor": "validationComplexity",
+          "description": "复杂验证逻辑",
+          "impact": "验证规则变更可能影响数据完整性和安全性"
+        },
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "validate",
+          "description": "包含validate相关的复杂逻辑",
+          "impact": "validate相关逻辑需要充分测试"
+        },
+        {
+          "factor": "error",
+          "description": "包含error相关的复杂逻辑",
+          "impact": "error相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "test",
+          "priority": "immediate",
+          "description": "必须立即生成测试用例"
+        },
+        {
+          "type": "coverage",
+          "priority": "immediate",
+          "description": "需要达到80%以上的代码覆盖率"
+        },
+        {
+          "type": "async",
+          "priority": "high",
+          "description": "测试异步操作的错误处理和超时情况"
+        },
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": false
+    },
+    {
+      "file": "src/reporter.js",
+      "riskScore": 14.2,
+      "riskLevel": "medium",
+      "riskFactors": [
+        {
+          "factor": "validationComplexity",
+          "description": "复杂验证逻辑",
+          "impact": "验证规则变更可能影响数据完整性和安全性"
+        },
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "auth",
+          "description": "包含auth相关的复杂逻辑",
+          "impact": "auth相关逻辑需要充分测试"
+        },
+        {
+          "factor": "validate",
+          "description": "包含validate相关的复杂逻辑",
+          "impact": "validate相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": false
+    },
+    {
+      "file": "bin/cli.js",
+      "riskScore": 12.2,
+      "riskLevel": "medium",
+      "riskFactors": [
+        {
+          "factor": "parsingRisk",
+          "description": "数据解析逻辑",
+          "impact": "解析错误可能导致应用崩溃或显示错误数据"
+        },
+        {
+          "factor": "parse",
+          "description": "包含parse相关的复杂逻辑",
+          "impact": "parse相关逻辑需要充分测试"
+        },
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "error",
+          "description": "包含error相关的复杂逻辑",
+          "impact": "error相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "edgeCase",
+          "priority": "high",
+          "description": "测试各种输入格式和异常情况"
+        },
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": false
+    },
+    {
+      "file": "src/index.js",
+      "riskScore": 10,
+      "riskLevel": "medium",
+      "riskFactors": [
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "validate",
+          "description": "包含validate相关的复杂逻辑",
+          "impact": "validate相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": false
+    },
+    {
+      "file": "src/change-detector.js",
+      "riskScore": 6.2,
+      "riskLevel": "low",
+      "riskFactors": [
+        {
+          "factor": "parsingRisk",
+          "description": "数据解析逻辑",
+          "impact": "解析错误可能导致应用崩溃或显示错误数据"
+        },
+        {
+          "factor": "parse",
+          "description": "包含parse相关的复杂逻辑",
+          "impact": "parse相关逻辑需要充分测试"
+        },
+        {
+          "factor": "async",
+          "description": "包含async相关的复杂逻辑",
+          "impact": "async相关逻辑需要充分测试"
+        },
+        {
+          "factor": "auth",
+          "description": "包含auth相关的复杂逻辑",
+          "impact": "auth相关逻辑需要充分测试"
+        },
+        {
+          "factor": "validate",
+          "description": "包含validate相关的复杂逻辑",
+          "impact": "validate相关逻辑需要充分测试"
+        },
+        {
+          "factor": "error",
+          "description": "包含error相关的复杂逻辑",
+          "impact": "error相关逻辑需要充分测试"
+        }
+      ],
+      "recommendations": [
+        {
+          "type": "edgeCase",
+          "priority": "high",
+          "description": "测试各种输入格式和异常情况"
+        },
+        {
+          "type": "integration",
+          "priority": "medium",
+          "description": "考虑添加集成测试验证模块间交互"
+        }
+      ],
+      "shouldGenerateTest": false
+    }
+  ],
+  "generatedTests": [
+    {
+      "name": "generic_test_test-generator",
+      "file": "test-report/generated-tests/src/test-generator.test.js",
+      "priority": "medium",
+      "linesOfCode": 129
+    },
+    {
+      "name": "generic_test_risk-assessor",
+      "file": "test-report/generated-tests/src/risk-assessor.test.js",
+      "priority": "medium",
+      "linesOfCode": 45
+    },
+    {
+      "name": "generic_test_coverage-analyzer",
+      "file": "test-report/generated-tests/src/coverage-analyzer.test.js",
+      "priority": "medium",
+      "linesOfCode": 69
+    }
+  ],
+  "validation": [
+    {
+      "testName": "generic_test_test-generator",
+      "coveredFunctions": [
+        "test-generator.js 测试",
+        "generateTestTemplates",
+        "generateOCRTests",
+        "generateExtractMedicineNameTest",
+        "generateOCRRecognitionTest",
+        "generateBaiduOCRTests",
+        "generateBaiduTokenTest",
+        "generateBaiduRecognizeTest",
+        "generateAddPageTests",
+        "generateSaveMedicineTest",
+        "generateRecordTakeTest",
+        "generateOCRIdentificationTest",
+        "generateIndexPageTests",
+        "generateIndexPageTest",
+        "generateRecordsPageTests",
+        "generateRecordsPageTest",
+        "generateDetailPageTests",
+        "generateDetailPageTest",
+        "generateGenericTests",
+        "generateGenericTest",
+        "extractFunctionsFromContent",
+        "generateTests",
+        "函数应存在"
+      ],
+      "totalFunctions": 43,
+      "estimatedCoverage": 100
+    },
+    {
+      "testName": "generic_test_risk-assessor",
+      "coveredFunctions": [
+        "risk-assessor.js 测试",
+        "calculateRiskScore",
+        "getRiskLevel",
+        "identifyRiskFactors",
+        "generateRecommendations",
+        "shouldGenerateTest",
+        "categorizeTestPriority",
+        "assessRiskPriority",
+        "函数应存在"
+      ],
+      "totalFunctions": 15,
+      "estimatedCoverage": 100
+    },
+    {
+      "testName": "generic_test_coverage-analyzer",
+      "coveredFunctions": [
+        "coverage-analyzer.js 测试",
+        "findTestFiles",
+        "parseExistingTests",
+        "extractFunctions",
+        "analyzeComplexity",
+        "detectCoverageGaps",
+        "calculateGapRiskScore",
+        "getRiskLevel",
+        "determineGapReason",
+        "identifyCriticalPaths",
+        "detectDownstreamUsage",
+        "analyzeCoverageGaps",
+        "函数应存在"
+      ],
+      "totalFunctions": 23,
+      "estimatedCoverage": 100
+    }
+  ]
+}

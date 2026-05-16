@@ -1,0 +1,35 @@
+{
+  "name": "test-gap-analyzer",
+  "version": "1.0.0",
+  "description": "Automated test gap analysis tool for detecting coverage gaps and generating tests",
+  "main": "src/index.js",
+  "bin": {
+    "test-gap-analyzer": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "analyze": "node bin/cli.js analyze",
+    "quick": "node bin/cli.js quick",
+    "report": "node bin/cli.js report"
+  },
+  "keywords": [
+    "testing",
+    "coverage",
+    "test-gap",
+    "automation",
+    "quality-assurance"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试缺口分析报告</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .risk-critical { color: #dc3545; font-weight: bold; }
+        .risk-high { color: #fd7e14; font-weight: bold; }
+        .risk-medium { color: #ffc107; font-weight: bold; }
+        .risk-low { color: #28a745; font-weight: bold; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:hover {
+            background: #f5f5f5;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .badge-critical { background: #dc3545; color: white; }
+        .badge-high { background: #fd7e14; color: white; }
+        .badge-medium { background: #ffc107; color: #333; }
+        .badge-low { background: #28a745; color: white; }
+        .timestamp {
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 测试缺口分析报告</h1>
+        <p class="timestamp">生成时间: 2026/5/16 02:14:59</p>
+    </div>
+    <div class="section">
+        <h2>📊 执行摘要</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value">0</div>
+                <div class="stat-label">分析的提交</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">8</div>
+                <div class="stat-label">覆盖率缺口</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">8</div>
+                <div class="stat-label">风险评估项</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">生成的测试</div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h2>⚠️ 风险分布</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value risk-critical">3</div>
+                <div class="stat-label">严重风险</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value risk-high">1</div>
+                <div class="stat-label">高危风险</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value risk-medium">3</div>
+                <div class="stat-label">中危风险</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value risk-low">1</div>
+                <div class="stat-label">低危风险</div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h2>🎯 覆盖率缺口详情</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>文件路径</th>
+                    <th>风险等级</th>
+                    <th>风险评分</th>
+                    <th>优先级</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>src/test-generator.js</code></td>
+                    <td><span class="badge badge-critical">critical</span></td>
+                    <td class="risk-critical">67.2</td>
+                    <td>medium</td>
+                </tr>
+                <tr>
+                    <td><code>src/risk-assessor.js</code></td>
+                    <td><span class="badge badge-critical">critical</span></td>
+                    <td class="risk-critical">31.1</td>
+                    <td>medium</td>
+                </tr>
+                <tr>
+                    <td><code>src/coverage-analyzer.js</code></td>
+                    <td><span class="badge badge-critical">critical</span></td>
+                    <td class="risk-critical">25.4</td>
+                    <td>medium</td>
+                </tr>
+                <tr>
+                    <td><code>src/test-runner.js</code></td>
+                    <td><span class="badge badge-critical">critical</span></td>
+                    <td class="risk-critical">17.2</td>
+                    <td>medium</td>
+                </tr>
+                <tr>
+                    <td><code>src/reporter.js</code></td>
+                    <td><span class="badge badge-high">high</span></td>
+                    <td class="risk-high">11.8</td>
+                    <td>medium</td>
+                </tr>
+                <tr>
+                    <td><code>bin/cli.js</code></td>
+                    <td><span class="badge badge-high">high</span></td>
+                    <td class="risk-high">10.2</td>
+                    <td>medium</td>
+                </tr>
+                <tr>
+                    <td><code>src/change-detector.js</code></td>
+                    <td><span class="badge badge-medium">medium</span></td>
+                    <td class="risk-medium">6.2</td>
+                    <td>medium</td>
+                </tr>
+                <tr>
+                    <td><code>src/index.js</code></td>
+                    <td><span class="badge badge-low">low</span></td>
+                    <td class="risk-low">N/A</td>
+                    <td>medium</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="section">
+        <h2>✍️ 生成的测试</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>测试名称</th>
+                    <th>文件路径</th>
+                    <th>优先级</th>
+                    <th>估计行数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>generic_test_test-generator</td>
+                    <td><code>test-report/generated-tests/src/test-generator.test.js</code></td>
+                    <td><span class="badge badge-medium">medium</span></td>
+                    <td>129</td>
+                </tr>
+                <tr>
+                    <td>generic_test_risk-assessor</td>
+                    <td><code>test-report/generated-tests/src/risk-assessor.test.js</code></td>
+                    <td><span class="badge badge-medium">medium</span></td>
+                    <td>45</td>
+                </tr>
+                <tr>
+                    <td>generic_test_coverage-analyzer</td>
+                    <td><code>test-report/generated-tests/src/coverage-analyzer.test.js</code></td>
+                    <td><span class="badge badge-medium">medium</span></td>
+                    <td>69</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="section">
+        <h2>📋 建议措施</h2>
+        <ul>
+            <li>立即处理 <strong>4 个高风险缺口</strong></li>
+            <li>审阅并运行生成的 3 个测试</li>
+            <li>将测试缺口分析集成到 CI/CD 流程</li>
+            <li>确保核心模块达到 80% 以上的测试覆盖率</li>
+        </ul>
+    </div>
+</body>
+</html>
