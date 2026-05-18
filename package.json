@@ -1,0 +1,37 @@
+{
+  "name": "medicine-records-tests",
+  "version": "1.0.0",
+  "description": "药品记录管理系统测试套件",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:utils": "jest tests/unit/utils",
+    "test:pages": "jest tests/integration/pages"
+  },
+  "keywords": ["wechat", "miniprogram", "testing", "medicine"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "utils/**/*.js",
+      "pages/**/**/*.js",
+      "!node_modules/**"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "setupFilesAfterEnv": [
+      "./tests/setup.js"
+    ],
+    "testTimeout": 10000,
+    "verbose": true
+  }
+}

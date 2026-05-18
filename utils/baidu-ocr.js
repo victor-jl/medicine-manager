@@ -103,12 +103,19 @@ function extractMedicineName(recognizedText) {
 
   const text = recognizedText.toLowerCase();
 
-  // 常见药品关键词
+  // 常见药品关键词 - 按优先级和长度排序
   const medicineKeywords = [
-    '胶囊', '片', '颗粒', '口服液', '注射液', '软膏', '贴剂',
-    '阿莫西林', '布洛芬', '对乙酰氨基酚', '头孢', '阿奇霉素',
-    '感冒灵', '退烧', '消炎', '维生素', '钙片', '胃药',
-    '血压', '血糖', '血脂', '感冒', '咳嗽', '腹泻'
+    '阿莫西林', '头孢克肟', '头孢克洛', '头孢克肟', '头孢',
+    '布洛芬', '对乙酰氨基酚', '阿奇霉素', '罗红霉素',
+    '感冒灵', '感冒清热', '板蓝根', '双黄连', '莲花清瘟',
+    '维生素', '钙片', '铁剂', '叶酸',
+    '奥美拉唑', '兰索拉唑', '泮托拉唑',
+    '硝苯地平', '氨氯地平', '贝那普利',
+    '二甲双胍', '格列本脲', '胰岛素',
+    '阿司匹林', '氯吡格雷',
+    '氯雷他定', '西替利嗪', '蒙脱石',
+    '胶囊', '片剂', '颗粒', '口服液', '注射液', '软膏', '贴剂', '滴眼液', '糖浆',
+    '胶囊', '片', '颗粒', '口服液', '注射液', '软膏', '贴剂', '滴眼液', '糖浆'
   ];
 
   // 查找包含关键词的文本
@@ -116,7 +123,7 @@ function extractMedicineName(recognizedText) {
     if (text.includes(keyword)) {
       // 尝试找到包含关键词的完整词组
       const index = text.indexOf(keyword);
-      const start = Math.max(0, index - 5);
+      const start = Math.max(0, index - 8);
       const end = Math.min(text.length, index + keyword.length + 10);
       return recognizedText.substring(start, end).trim();
     }
