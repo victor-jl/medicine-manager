@@ -1,0 +1,12 @@
+{
+  "name": "medicine-tracker",
+  "version": "1.0.0",
+  "description": "药品管理微信小程序",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
