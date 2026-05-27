@@ -1,0 +1,16 @@
+{
+  "name": "medicine-tracker",
+  "version": "1.0.0",
+  "description": "药品管理小程序",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "babel-jest": "^29.7.0",
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.7"
+  }
+}
