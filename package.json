@@ -1,0 +1,27 @@
+{
+  "name": "medicine-record-tests",
+  "version": "1.0.0",
+  "description": "用药记录管理系统测试套件",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "utils/**/*.js",
+      "!node_modules/**"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  }
+}
