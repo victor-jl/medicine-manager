@@ -1,0 +1,11 @@
+{
+  "name": "medicine-record",
+  "version": "1.0.0",
+  "description": "用药记录 - 微信小程序+H5版本",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
