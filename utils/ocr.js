@@ -141,5 +141,6 @@ function extractMedicineName(text) {
 module.exports = {
   recognizeWithWechat,
   recognizeWithBaidu,
-  extractMedicineName
+  extractMedicineName,
+  getBaiduToken
 };
