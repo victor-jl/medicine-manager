@@ -1,0 +1,12 @@
+{
+  "name": "medicine-record-tests",
+  "version": "1.0.0",
+  "description": "Test suite for medicine record mini program",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
