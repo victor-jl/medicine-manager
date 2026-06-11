@@ -1,0 +1,12 @@
+{
+  "name": "medication-records-tests",
+  "version": "1.0.0",
+  "description": "用药记录小程序测试",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
