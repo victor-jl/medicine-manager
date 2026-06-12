@@ -1,0 +1,17 @@
+{
+  "name": "medicine-tracker",
+  "version": "1.0.0",
+  "description": "药品管理微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "keywords": ["medicine", "wechat", "mini-program"],
+  "author": "",
+  "license": "MIT"
+}

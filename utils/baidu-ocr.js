@@ -114,10 +114,9 @@ function extractMedicineName(recognizedText) {
   // 查找包含关键词的文本
   for (const keyword of medicineKeywords) {
     if (text.includes(keyword)) {
-      // 尝试找到包含关键词的完整词组
       const index = text.indexOf(keyword);
-      const start = Math.max(0, index - 5);
-      const end = Math.min(text.length, index + keyword.length + 10);
+      const start = Math.max(0, index - 10);
+      const end = Math.min(text.length, index + keyword.length + 15);
       return recognizedText.substring(start, end).trim();
     }
   }
