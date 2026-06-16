@@ -1,0 +1,12 @@
+{
+  "name": "medicine-tracker",
+  "version": "1.0.0",
+  "description": "药品管理小程序",
+  "scripts": {
+    "test": "node_modules/.bin/mocha tests/**/*.test.js",
+    "test:watch": "node_modules/.bin/mocha tests/**/*.test.js --watch"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}
