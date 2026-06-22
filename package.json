@@ -1,0 +1,13 @@
+{
+  "name": "medicine-record-app",
+  "version": "1.0.0",
+  "description": "药品记录管理系统 - 微信小程序",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "miniprogram-simulate": "^1.0.0"
+  }
+}
