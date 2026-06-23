@@ -101,7 +101,7 @@ async function recognizeText(imagePath) {
 function extractMedicineName(recognizedText) {
   if (!recognizedText) return '';
 
-  const text = recognizedText.toLowerCase();
+  const lowerText = recognizedText.toLowerCase();
 
   // 常见药品关键词
   const medicineKeywords = [
@@ -113,18 +113,29 @@ function extractMedicineName(recognizedText) {
 
   // 查找包含关键词的文本
   for (const keyword of medicineKeywords) {
-    if (text.includes(keyword)) {
+    if (lowerText.includes(keyword)) {
       // 尝试找到包含关键词的完整词组
-      const index = text.indexOf(keyword);
-      const start = Math.max(0, index - 5);
-      const end = Math.min(text.length, index + keyword.length + 10);
-      return recognizedText.substring(start, end).trim();
+      const index = lowerText.indexOf(keyword);
+      
+      // 找到关键词所在行的开始
+      let lineStart = index;
+      while (lineStart > 0 && lowerText[lineStart - 1] !== '\n' && lowerText[lineStart - 1] !== '\r') {
+        lineStart--;
+      }
+      
+      // 找到关键词所在行的结束
+      let lineEnd = index + keyword.length;
+      while (lineEnd < lowerText.length && lowerText[lineEnd] !== '\n' && lowerText[lineEnd] !== '\r') {
+        lineEnd++;
+      }
+      
+      return recognizedText.substring(lineStart, lineEnd).trim();
     }
   }
 
   // 如果没有匹配关键词，返回第一行（通常是名称）
   const lines = recognizedText.split(/[\n\r]/).filter(line => line.trim());
-  return lines.length > 0 ? lines[0] : recognizedText.substring(0, 20);
+  return lines.length > 0 ? lines[0].trim().substring(0, 20) : recognizedText.trim().substring(0, 20);
 }
 
 module.exports = {

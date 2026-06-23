@@ -1,0 +1,13 @@
+{
+  "name": "medicine-records",
+  "version": "1.0.0",
+  "description": "用药记录小程序",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "miniprogram-simulate": "^1.0.0"
+  }
+}
