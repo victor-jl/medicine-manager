@@ -1,0 +1,17 @@
+{
+  "name": "medicine-manager-tests",
+  "version": "1.0.0",
+  "description": "Test suite for medicine manager mini-program",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"],
+    "collectCoverageFrom": ["utils/**/*.js", "pages/**/*.js"]
+  }
+}
