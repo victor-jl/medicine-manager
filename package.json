@@ -1,0 +1,12 @@
+{
+  "name": "medicine-record",
+  "version": "1.0.0",
+  "description": "药品记录管理系统",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
