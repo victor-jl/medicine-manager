@@ -1,0 +1,15 @@
+{
+  "name": "medicine-records",
+  "version": "1.0.0",
+  "description": "药品记录管理系统",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
+  }
+}
