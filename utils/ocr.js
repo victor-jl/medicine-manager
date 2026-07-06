@@ -126,10 +126,11 @@ function extractMedicineName(text) {
   const lowerText = text.toLowerCase();
 
   for (const kw of keywords) {
-    if (lowerText.includes(kw)) {
-      const idx = lowerText.indexOf(kw);
+    const lowerKw = kw.toLowerCase();
+    if (lowerText.includes(lowerKw)) {
+      const idx = lowerText.indexOf(lowerKw);
       const start = Math.max(0, idx - 8);
-      const end = Math.min(text.length, idx + kw.length + 10);
+      const end = Math.min(lowerText.length, idx + lowerKw.length + 10);
       return text.substring(start, end).trim();
     }
   }
