@@ -1,0 +1,9 @@
+{
+  "name": "medicine-tracker-tests",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Regression safety net for the medicine-tracking mini program",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}
