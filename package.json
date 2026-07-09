@@ -1,0 +1,45 @@
+{
+  "name": "medicine-management",
+  "version": "1.0.0",
+  "description": "药品记录管理系统",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:verbose": "jest --verbose"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "utils/**/*.js",
+      "pages/**/*.js",
+      "!**/node_modules/**",
+      "!**/tests/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "text-summary",
+      "html"
+    ],
+    "verbose": true,
+    "moduleDirectories": [
+      "node_modules",
+      "utils",
+      "pages"
+    ]
+  },
+  "keywords": [
+    "medicine",
+    "ocr",
+    "wechat-mini-program"
+  ],
+  "author": "",
+  "license": "MIT"
+}
