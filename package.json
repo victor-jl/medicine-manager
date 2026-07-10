@@ -1,0 +1,9 @@
+{
+  "name": "medicine-tracker-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Regression test suite for medicine tracker (WeChat Mini Program + H5).",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}
