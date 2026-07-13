@@ -69,23 +69,23 @@ async function recognizeText(imagePath) {
           image: base64
         },
         success: (res) => {
-          if (res.data && res.data.words_result) {
-            // 提取所有识别的文字
-            const words = res.data.words_result.map(item => item.words);
-            resolve({
-              success: true,
-              words: words,
-              text: words.join(' ')
-            });
-          } else if (res.data && res.data.error_code) {
-            reject(new Error(`OCR识别失败: ${res.data.error_msg}`));
-          } else {
-            reject(new Error('OCR识别失败，未返回有效数据'));
-          }
-        },
-        fail: (err) => {
-          reject(err);
+        if (res.data && res.data.words_result) {
+          // 提取所有识别的文字
+          const words = res.data.words_result.map(item => item.words);
+          resolve({
+            success: true,
+            words: words,
+            text: words.join(' ')
+          });
+        } else if (res.data && res.data.error_code) {
+          reject(new Error(`OCR识别失败: ${res.data.error_msg}`));
+        } else {
+          reject(new Error('OCR识别失败，未返回有效数据'));
         }
+      },
+      fail: (err) => {
+        reject(new Error(err.errMsg || 'OCR请求失败'));
+      }
       });
     });
   } catch (error) {

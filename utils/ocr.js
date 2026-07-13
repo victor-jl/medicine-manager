@@ -28,7 +28,7 @@ async function recognizeWithWechat(imagePath) {
         }
       },
       fail: (err) => {
-        reject(err);
+        reject(new Error(err.errMsg || '云函数调用失败'));
       }
     });
   });
