@@ -1,0 +1,16 @@
+{
+  "name": "medicine-tracker-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Regression safety net for medicine-tracker WeChat Mini Program",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/tests/**/*.test.js"]
+  }
+}
