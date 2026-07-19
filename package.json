@@ -1,0 +1,25 @@
+{
+  "name": "medicine-records",
+  "version": "1.0.0",
+  "description": "用药记录小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.test.js",
+      "**/*.spec.js"
+    ],
+    "collectCoverageFrom": [
+      "utils/**/*.js",
+      "!**/node_modules/**"
+    ]
+  }
+}
