@@ -124,7 +124,10 @@ function extractMedicineName(recognizedText) {
 
   // 如果没有匹配关键词，返回第一行（通常是名称）
   const lines = recognizedText.split(/[\n\r]/).filter(line => line.trim());
-  return lines.length > 0 ? lines[0] : recognizedText.substring(0, 20);
+  if (lines.length > 0) {
+    return lines[0].length > 20 ? lines[0].substring(0, 20) : lines[0];
+  }
+  return '';
 }
 
 module.exports = {
